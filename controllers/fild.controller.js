@@ -112,5 +112,4 @@ const getFildById = catchAsync(async (req, res, next) => {
     })
 });
 
-
 module.exports = { createFild, getFildById, getFildAll };

@@ -22,10 +22,9 @@ const fildScheme = new mongoose.Schema({
     type: String,
     require: [true, 'Please enter description'],
   },
-  fildImgUrl: [{
-    type: mongoose.Types.ObjectId,
-    ref: 'FildImg'
-  }],
+  fildImgUrl: {
+    type: Array,
+  },
   rating: {
     type: Number,
     required: [true, 'Please enter your rating scenery'],
