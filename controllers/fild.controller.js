@@ -15,7 +15,7 @@ const { storage } = require('../utils/firebase');
 
 const createFild = catchAsync(async (req, res, next) => {
 
-    const { nameFild, sceneryId, sportId, fildImgUrl, accountPerson, rating, status } = req.body;
+    const { nameFild, sceneryId, sportId, fildImgUrl, accountPerson, rating, price,status } = req.body;
 
     const sceneryExist = await Scenery.findById(sceneryId);
     const sportExist = await Sport.findById(sportId);
@@ -28,9 +28,6 @@ const createFild = catchAsync(async (req, res, next) => {
         return next(new AppError('dont exist sport', 404));
     }
 
-    sceneryExist.location = undefined;
-    sceneryExist.user = undefined;
-    sceneryExist.rating = undefined;
 
     const fildPromises = req.files.map(async file => {
 
@@ -47,10 +44,11 @@ const createFild = catchAsync(async (req, res, next) => {
 
     const newFild = await Fild.create({
         nameFild,
-        sceneryId,
-        sportId,
+        sceneryId: sceneryExist,
+        sportId: sportExist,
         accountPerson,
-        fildImgUrl: imgFilds,
+        fildImgUrl:imgFilds,
+        price,
         rating,
     });
 
