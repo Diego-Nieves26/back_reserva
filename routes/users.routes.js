@@ -6,6 +6,7 @@ const {
   login,
   deleteUser,
   updateUser,
+  getUser
 } = require('../controllers/users.controller');
 
 // Middlewares
@@ -21,6 +22,8 @@ const usersRouter = express.Router();
 usersRouter.post('/signup', createUserValidator, createUser);
 
 usersRouter.post('/login', login);
+
+usersRouter.get('/getUser/:id', userExists, getUser)
 
 usersRouter.use(protectSession);
 
