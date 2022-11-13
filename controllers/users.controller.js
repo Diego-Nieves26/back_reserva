@@ -53,6 +53,7 @@ const login = catchAsync(async (req, res, next) => {
 
   res.status(201).json({
     status: 'success',
+    user,
     token,
   });
 });
